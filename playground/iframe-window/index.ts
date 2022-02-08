@@ -1,4 +1,4 @@
-import { createBackend, IframeRPC } from '../../src';
+import { FrameRPC, createBackend } from '../../src';
 import { IframeToMain, SampleRPCContract } from '../common/types';
 
 createBackend<SampleRPCContract>({
@@ -12,7 +12,7 @@ createBackend<SampleRPCContract>({
 });
 
 (async () => {
-  const iframeRPC = new IframeRPC(window.parent);
+  const iframeRPC = new FrameRPC(window.parent);
 
   await iframeRPC.handshake();
 

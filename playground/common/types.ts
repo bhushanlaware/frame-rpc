@@ -5,5 +5,5 @@ export interface SampleRPCContract {
 }
 
 export interface IframeToMain {
-  say: (message: string) => void;
+  say: (() => void) | ((message: string) => void);
 }

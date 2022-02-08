@@ -1,4 +1,4 @@
-import { createBackend, IframeRPC } from '../../src';
+import { FrameRPC, createBackend } from '../../src';
 import { IframeToMain, SampleRPCContract } from '../common/types';
 
 (async () => {
@@ -16,7 +16,7 @@ import { IframeToMain, SampleRPCContract } from '../common/types';
       iframeElement.contentWindow
     );
 
-    const iframeRPC = new IframeRPC(iframeElement.contentWindow);
+    const iframeRPC = new FrameRPC(iframeElement.contentWindow);
 
     await iframeRPC.handshake();
 
@@ -27,7 +27,9 @@ import { IframeToMain, SampleRPCContract } from '../common/types';
       const text = (document.getElementById('message-text') as HTMLInputElement)
         .value;
 
-      sampleRPC.say(text);
+      sampleRPC.say((message) => {
+        console.log(message);
+      });
     });
 
     // we get some result back from iframe yay!!
